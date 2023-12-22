@@ -3,25 +3,17 @@ const sourcePole = [3, 2, 1];
 const auxiliaryPole = [];
 const targetPole = [];
 
-// Function: Move disks in the Hanoi Tower
 function hanoiTower(n, source, auxiliary, target) {
     if (n === 0) {
-        // No disk to move
         return;
     }
 
-    // Move n-1 disks from the source pole to the auxiliary pole using the target pole as a temporary pole
     hanoiTower(n - 1, source, target, auxiliary);
-
-    // Move the remaining disk from the source pole to the target pole
     target.push(source.pop());
     displayState();
-
-    // Move n-1 disks from the auxiliary pole to the target pole using the source pole as a temporary pole
     hanoiTower(n - 1, auxiliary, source, target);
 }
 
-// Function: Display the current state on the web page
 function displayState() {
     document.getElementById('output').innerHTML += `
         <p>A: ${sourcePole.join(', ')}</p>
@@ -31,8 +23,5 @@ function displayState() {
             `;
         }
 
-        // Display the initial state
         displayState();
-
-        // Solve the Hanoi Tower problem with 3 disks
         hanoiTower(sourcePole.length, sourcePole, auxiliaryPole, targetPole);
